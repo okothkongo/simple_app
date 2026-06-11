@@ -1,0 +1,26 @@
+steps:
+  deps:
+    image: elixir:1.17
+    commands:
+      - mix local.hex --force
+      - mix local.rebar --force
+      - mix deps.get
+
+  compile:
+    image: elixir:1.17
+    commands:
+      - mix local.hex --force
+      - mix compile --warnings-as-errors
+
+  test:
+    image: elixir:1.17
+    commands:
+      - mix local.hex --force
+      - mix local.rebar --force
+      - mix deps.get
+      - mix test
+
+  format-check:
+    image: elixir:1.17
+    commands:
+      - mix format --check-formatted
